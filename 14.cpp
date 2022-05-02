@@ -592,5 +592,6 @@ int main()
     delete[] image4.PixelData;
     
     cout<<"\n...hoan thanh...\n\n\n";
+    cout<<"hehe"\n;
     return 225;
 }
