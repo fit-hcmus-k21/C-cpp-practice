@@ -1,7 +1,14 @@
 #include <iostream>
 using namespace std;
 
-/***    Bài tóán tháp Hà Nội:
- *  Chuyển N đĩa từ tháp A sang tháp C lấy tháp B làm trung gian    ***/
+//  Hàm khởi tạo bàn cờ NxN ô khi chưa đặt quân hậu 
+void KhoiTao(int **&a,int N);
 
-void ChuyenThap(char src, char medium, char dest, int n);
+//  Hàm in bàn cờ NxN ô
+void In(int **a, int N);
+
+//  Hàm kiểm tra vị trí hàng row, cột col có đặt quân hậu được hay không
+bool KiemTra(int **a, int row, int col, int N);
+
+//  Hàm đệ quy đặt quân hậu
+void DatHau(int **&a, int N, int i);
