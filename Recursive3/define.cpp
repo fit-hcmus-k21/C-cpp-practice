@@ -32,98 +32,37 @@ void In(int **a,int N)
     cout<<endl;
 } 
 
-//  Hàm kiểm tra xem quân mã có thể đi tiếp tại vị trí hiện tại không
-void KiemTra(int **&a, int N, int i, int j, int stt)
+//  Hàm di chuyển của quân mã trên bàn cờ
+void DiTuan(int **&a, int N, int row, int col, int stt)
 {
-    if (stt==N*N)
-    {
-        In(a,N);
-        return ;
-    }
-    //  8 vị trí mà quân mã ở vị trí (i,j) có thể đi tiếp:
-    //  Vị trí 1:   (i-2;j+1)
-    if (i-2>=0 && j+1<N && a[i-2][j+1]==0)
-    {
-        //  Nếu đi được thì đánh dấu vị trí mới đó
-        a[i-2][j+1]=stt;
-        KiemTra(a,N,i-2,j+1,stt+1);
-        a[i-2][j+1]=0;
-    }
+    int dx[8]={-2,-2,-1,-1,1,1,2,2};
+    int dy[8]={-1,1,-2,2,-2,2,-1,1};
+    //  Đánh dấu vị trí (i,j) đã đi
+    a[row][col]=stt++;
 
+    int newX;
+    int newY;
+
+    for (int i=0;i<8;i++)
     {
-        //  Vị trí 2:   (i-2;j-1)
-        if (i-2>=0 && j-1>=0 && a[i-2][j-1]==0)
+        if (stt==N*N+1)
         {
-            //  Nếu đi được thì đánh dấu vị trí mới đó
-            a[i-2][j-1]=stt;
-            KiemTra(a,N,i-2,j-1,stt+1);
-            a[i-2][j-1]=0;
+            //  Nếu đã đi đủ N*N bước thì in bàn cờ các bước đi
+            In(a,N);
+            exit(225);
         }
-        
+
+        //  Tọa độ bước đi mới
+        newX=row + dx[i];
+        newY=col + dy[i];
+
+        //  Kiểm tra bước đi mới có hợp lệ hay không
+        if (newX<N && newX>=0 && newY<N && newY>=0 && a[newX][newY]==0)
         {
-            //  Vị trí 3:   (i-1;j+2)
-            if (i-1>=0 && j+2<N && a[i-1][j+2]==0)
-            {
-                //  Nếu đi được thì đánh dấu vị trí mới đó
-                a[i-1][j+2]=stt;
-                KiemTra(a,N,i-1,j+2,stt+1);
-                a[i-1][j+2]=0;
-            }
-            
-            {
-                //  Vị trí 4:   (i-1;j-2)
-                if (i-1>=0 && j-2>=0 && a[i-1][j-2]==0)
-                {
-                    //  Nếu đi được thì đánh dấu vị trí mới đó
-                    a[i-1][j-2]=stt;
-                    KiemTra(a,N,i-1,j-2,stt+1);
-                    a[i-1][j-2]=0;
-                }
-                
-                {
-                    //  Vị trí 5:   (i+1;j+2)
-                    if (i+1<N && j+2<N && a[i+1][j+2]==0)
-                    {
-                        //  Nếu đi được thì đánh dấu vị trí mới đó
-                        a[i+1][j+2]=stt;
-                        KiemTra(a,N,i+1,j+2,stt+1);
-                        a[i+1][j+2]=0;
-                    }
-                    
-                    {
-                        //  Vị trí 6:   (i+1;j-2)
-                        if (i+1<N && j-2>=0 && a[i+1][j-2]==0)
-                        {
-                            //  Nếu đi được thì đánh dấu vị trí mới đó
-                            a[i+1][j-2]=stt;
-                            KiemTra(a,N,i+1,j-2,stt+1);
-                            a[i+1][j-2]=0;
-                        }
-                        
-                        {
-                            //  Vị trí 7:   (i+2;j+1)
-                            if (i+2<N && j+1<N && a[i+2][j+1]==0)
-                            {
-                                //  Nếu đi được thì đánh dấu vị trí mới đó
-                                a[i+2][j+1]=stt;
-                                KiemTra(a,N,i+2,j+1,stt+1);
-                                a[i+2][j+1]=0;
-                            }
-                            
-                            {
-                                //  Vị trí 8:   (i+2;j-1)
-                                if (i+2<N && j-1>=0 && a[i+2][j-1]==0)
-                                {
-                                    //  Nếu đi được thì đánh dấu vị trí mới đó
-                                    a[i+2][j-1]=stt;
-                                    KiemTra(a,N,i+2,j-1,stt+1);
-                                    a[i+2][j-1]=0;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            DiTuan(a,N,newX,newY,stt);
         }
     }
+    //  Nếu không đi được 1 trong 8 vị trí đó thì trả lại giá trị ban đầu và quay lại vị trí khác
+    stt--;
+    a[row][col]=0;
 }

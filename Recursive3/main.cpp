@@ -4,26 +4,30 @@
 
 int main()
 {
-    int N=8;
+    int N=7;
     int **a;
+    KhoiTao(a,N);
+
     int row=2;
     int col=0;
-    int stt = 1;
+    
     /***
     cout<<"Nhap vi tri ban dau cua quan ma (i,j):  ";
     cin>>row>>col;
     ***/
-    a[row][col]=stt++;
+
+    int stt=1;
 
     //  Tìm các vị trí đi được của quân mã
-    KiemTra(a,N,row,col,stt);
+    DiTuan(a,N,row,col,stt);
 
-
+    cout<<"\nok....\n";
     //  Giải phóng bộ nhớ
     for (int i=0;i<N;i++)
     {
         delete[] a[i];
     }
     delete[] a;
+    cout<<"\nHoan thanh...\n";
     return 225;
 }
