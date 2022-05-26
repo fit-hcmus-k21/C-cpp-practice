@@ -1,0 +1,55 @@
+11
+hoc sinh
+114
+Bui Thanh Quy
+5
+22
+sinh vien
+225
+Bui Thi Thanh Ngan
+6
+13
+sinh vien
+134
+Bui Thanh Tien
+4
+10
+eating
+1095
+con heo (pig)
+1
+7
+sleeping
+153300
+people
+1
+5
+learning
+840
+student
+1
+8
+teaching
+365
+Dung NGUYEN
+1
+9
+playing game
+60
+friend
+7
+17
+sua gau gau
+360
+con cho (dog)
+2
+19
+keu mewmew
+355
+con meo (cat)
+3
+23
+keu ut ec
+314
+con lon (small pig)
+5
